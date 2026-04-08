@@ -21,6 +21,8 @@ from formats import (
     AntigravityFormat,
     OpenCodeFormat,
     CodexFormat,
+    OpenClawFormat,
+    HermesFormat,
 )
 from utils import get_version_from_pyproject
 from validate_versions import set_plugin_version, set_marketplace_version
@@ -136,11 +138,13 @@ def convert_rules(
         AntigravityFormat(version),
     ]
 
-    # Only include Agent Skills, OpenCode, and Codex formats for core rules
+    # Only include Agent Skills–based formats (skills with SKILL.md) for core rules
     if include_agentskills:
         all_formats.append(AgentSkillsFormat(version))
         all_formats.append(OpenCodeFormat(version))
         all_formats.append(CodexFormat(version))
+        all_formats.append(OpenClawFormat(version))
+        all_formats.append(HermesFormat(version))
 
     converter = RuleConverter(formats=all_formats)
     path = Path(input_path)
@@ -272,6 +276,18 @@ def convert_rules(
         shutil.copy2(output_skill_path, codex_skill_dir / "SKILL.md")
         print(f"Copied SKILL.md to {codex_skill_dir / 'SKILL.md'}")
 
+        # Copy SKILL.md to the OpenClaw skill directory (.openclaw/skills/software-security/).
+        openclaw_skill_dir = Path(output_dir) / ".openclaw" / "skills" / "software-security"
+        openclaw_skill_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(output_skill_path, openclaw_skill_dir / "SKILL.md")
+        print(f"Copied SKILL.md to {openclaw_skill_dir / 'SKILL.md'}")
+
+        # Copy SKILL.md to the Hermes skill directory (.hermes/skills/software-security/).
+        hermes_skill_dir = Path(output_dir) / ".hermes" / "skills" / "software-security"
+        hermes_skill_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(output_skill_path, hermes_skill_dir / "SKILL.md")
+        print(f"Copied SKILL.md to {hermes_skill_dir / 'SKILL.md'}")
+
     return results
 
 
@@ -372,7 +388,7 @@ if __name__ == "__main__":
         sources_list = ", ".join(p.name for p in source_paths)
         print(f"\nConverting {len(source_paths)} sources: {sources_list}")
         if has_core:
-            print("(Agent Skills, OpenCode, and Codex will include only core rules)")
+            print("(Agent Skills, OpenCode, Codex, OpenClaw, and Hermes will include only core rules)")
         print()
 
     # Convert all sources
