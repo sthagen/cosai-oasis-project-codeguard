@@ -215,8 +215,6 @@ Select your AI coding tool and follow the instructions:
 
     OpenClaw uses the [Agent Skills standard](https://agentskills.io/) for skill discovery.
 
-    **Option A: Pre-built download (recommended)**
-
     1. **Download** [`ide-rules-openclaw.zip`](https://github.com/cosai-oasis/project-codeguard/releases) from the Releases page
     2. **Extract** the ZIP file
     3. **Copy** the `.openclaw/` directory to your project root:
@@ -227,19 +225,9 @@ Select your AI coding tool and follow the instructions:
 
     4. **Start a new session** in OpenClaw to load the rules
 
-    **Option B: ClawHub marketplace**
-
-    ```bash
-    clawhub install software-security
-    ```
-
-    Once installed, OpenClaw automatically discovers and applies the security rules when generating or reviewing code.
-
 === "Hermes"
 
     Hermes uses the [Agent Skills standard](https://agentskills.io/) for skill discovery.
-
-    **Option A: Pre-built download (recommended)**
 
     1. **Download** [`ide-rules-hermes.zip`](https://github.com/cosai-oasis/project-codeguard/releases) from the Releases page
     2. **Extract** the ZIP file
@@ -250,17 +238,6 @@ Select your AI coding tool and follow the instructions:
         ```
 
     4. **Start a new session** in Hermes to load the rules
-
-    **Option B: Hermes CLI**
-
-    ```bash
-    hermes skills install software-security
-    ```
-
-    Once installed, Hermes automatically discovers and applies the security rules when generating or reviewing code.
-
-    !!! info "Hermes Skills Documentation"
-        For more information, see the [Hermes Skills documentation](https://hermes-agent.nousresearch.com/docs/skills/).
 
 **Using multiple tools?** Download [`ide-rules-all.zip`](https://github.com/cosai-oasis/project-codeguard/releases) for all formats in one archive.
 
