@@ -86,7 +86,7 @@ INPUT_PATTERNS = [
     (r"\bopen\s*\(", "File descriptor open"),
     (r"\bread\s*\(", "Low-level read — may process untrusted data"),
     (r"\bfscanf\s*\(", "Formatted file input"),
-    (r"\bxml|json|yaml|parse", "Data parsing — untrusted input risk"),
+    (r"\b(xml|json|yaml|parse)\b", "Data parsing — untrusted input risk"),
 ]
 
 # Patterns indicating concurrency
